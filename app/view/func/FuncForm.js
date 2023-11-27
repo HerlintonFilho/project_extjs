@@ -1,13 +1,3 @@
-var subsetor = Ext.create('Ext.data.Store', {
-    fields: ['abbr', 'name'],
-    data : [
-        {"abbr":"REC", "name":"Recepção"},
-        {"abbr":"AN", "name":"Análise"},
-        {"abbr":"SP", "name":"Suporte"}
-    ]
-});
-
-
 Ext.define('ExtMVC.view.func.FuncForm', {
     extend: 'Ext.window.Window',
     alias: 'widget.funcform',
