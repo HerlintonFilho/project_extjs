@@ -30,6 +30,7 @@ Ext.define('ExtMVC.view.func.SubsetorForm', {
                 },
                 {
                     xtype: 'combobox',
+                    name:'setor_name',
                     fieldLabel: 'Setor',
                     inputId: 'selectSetor',
                     store: 'ExtMVC.store.Setor',

@@ -189,8 +189,6 @@ Ext.define('ExtMVC.controller.Main', {
         var win = this.openFormCargo('Editar Cargo - ' + record.get('description'));
         var form = win.down('form');
         form.loadRecord(record);
-        console.log(form.getComponent('comboSelect'))
-        console.log(record.data.status_cargo);
     },
 
     onAddCargo: function(btn, e, eOpts){
@@ -219,8 +217,6 @@ Ext.define('ExtMVC.controller.Main', {
             record = form.getRecord(),
             grid = Ext.ComponentQuery.query('cargosgrid')[0],
             store = grid.getStore();
-            console.log(values);
-
         if (record){
             
             record.set(values);

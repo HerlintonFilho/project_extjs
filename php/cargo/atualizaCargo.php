@@ -15,7 +15,8 @@
 	//consulta sql
 	$query = sprintf("UPDATE cargo SET description = '%s', status_cargo = '%s' WHERE id=%d",
         mysqli_real_escape_string($conexao, $description),
-        mysqli_real_escape_string($conexao, $status_cargo));
+        mysqli_real_escape_string($conexao, $status_cargo),
+		$id);
 
 	$rs = mysqli_query($conexao ,$query);
 

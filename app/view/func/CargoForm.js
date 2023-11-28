@@ -39,6 +39,7 @@ Ext.define('ExtMVC.view.func.CargoForm', {
                 },
                 {
                     itemId: 'comboSelect',
+                    name: 'status_cargo',
                     autoSelect: true,
                     xtype: 'combobox',
                     fieldLabel: 'Status',
