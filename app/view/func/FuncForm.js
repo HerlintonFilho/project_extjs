@@ -92,6 +92,7 @@ Ext.define('ExtMVC.view.func.FuncForm', {
                 },
                 {
                     xtype: 'combobox',
+                    name:'cargo',
                     inputId: 'selectCargo',
                     fieldLabel: 'Cargo',
                     store: 'ExtMVC.store.Cargo',
@@ -100,6 +101,7 @@ Ext.define('ExtMVC.view.func.FuncForm', {
                 },
                 {
                     xtype: 'combobox',
+                    name: 'setor',
                     fieldLabel: 'Setor',
                     inputId: 'selectSetor',
                     store: 'ExtMVC.store.Setor',
@@ -108,6 +110,7 @@ Ext.define('ExtMVC.view.func.FuncForm', {
                 },
                 {
                     xtype: 'combobox',
+                    name: 'subsetor',
                     fieldLabel: 'Subsetor',
                     inputId: 'selectSubSetor',
                     store: 'ExtMVC.store.Subsetor',

@@ -829,8 +829,25 @@ Ext.ClassManager.addNameAlternateMappings({
   ],
   "ExtMVC.Application": [],
   "ExtMVC.controller.Main": [],
+  "ExtMVC.model.Cargo": [],
+  "ExtMVC.model.Func": [],
+  "ExtMVC.model.Setor": [],
+  "ExtMVC.model.Subsetor": [],
+  "ExtMVC.store.Cargo": [],
+  "ExtMVC.store.Func": [],
+  "ExtMVC.store.Setor": [],
+  "ExtMVC.store.Subsetor": [],
   "ExtMVC.view.Main": [],
-  "ExtMVC.view.Viewport": []
+  "ExtMVC.view.Viewport": [],
+  "ExtMVC.view.func.Cargo": [],
+  "ExtMVC.view.func.CargoForm": [],
+  "ExtMVC.view.func.FuncForm": [],
+  "ExtMVC.view.func.Funcionario": [],
+  "ExtMVC.view.func.Grid": [],
+  "ExtMVC.view.func.Setor": [],
+  "ExtMVC.view.func.SetorForm": [],
+  "ExtMVC.view.func.Subsetor": [],
+  "ExtMVC.view.func.SubsetorForm": []
 });
 Ext.ClassManager.addNameAliasMappings({
   "Ext.AbstractComponent": [],
@@ -1819,10 +1836,45 @@ Ext.ClassManager.addNameAliasMappings({
   ],
   "ExtMVC.Application": [],
   "ExtMVC.controller.Main": [],
+  "ExtMVC.model.Cargo": [],
+  "ExtMVC.model.Func": [],
+  "ExtMVC.model.Setor": [],
+  "ExtMVC.model.Subsetor": [],
+  "ExtMVC.store.Cargo": [],
+  "ExtMVC.store.Func": [],
+  "ExtMVC.store.Setor": [],
+  "ExtMVC.store.Subsetor": [],
   "ExtMVC.view.Main": [
     "widget.app-main"
   ],
-  "ExtMVC.view.Viewport": []
+  "ExtMVC.view.Viewport": [],
+  "ExtMVC.view.func.Cargo": [
+    "widget.cargosgrid"
+  ],
+  "ExtMVC.view.func.CargoForm": [
+    "widget.cargoform"
+  ],
+  "ExtMVC.view.func.FuncForm": [
+    "widget.funcform"
+  ],
+  "ExtMVC.view.func.Funcionario": [
+    "widget.funcionariosgrid"
+  ],
+  "ExtMVC.view.func.Grid": [
+    "widget.gridmain"
+  ],
+  "ExtMVC.view.func.Setor": [
+    "widget.setoresgrid"
+  ],
+  "ExtMVC.view.func.SetorForm": [
+    "widget.setorform"
+  ],
+  "ExtMVC.view.func.Subsetor": [
+    "widget.subsetoresgrid"
+  ],
+  "ExtMVC.view.func.SubsetorForm": [
+    "widget.subsetorform"
+  ]
 });
 Ext.setVersion("ext-theme-base", "4.2.1");
 Ext.setVersion("ext-theme-classic", "4.2.1");

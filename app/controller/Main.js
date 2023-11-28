@@ -117,6 +117,8 @@ Ext.define('ExtMVC.controller.Main', {
         var form = win.down('form');
         form.loadRecord(record);
         console.log(record);
+        var radio = form.down('[name=sexo]');
+        console.log(radio)
     },
 
     onAddClick: function(btn, e, eOpts){
@@ -151,6 +153,7 @@ Ext.define('ExtMVC.controller.Main', {
             
             record.set(values);
             console.log('Atualiza');
+            console.log(values)
 
         } else { 
 
