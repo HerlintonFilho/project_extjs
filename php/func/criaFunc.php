@@ -18,8 +18,7 @@
     $cargo = $data->cargo;
     $setor = $data->setor;
     $subsetor = $data->subsetor;
-    
-    echo $dataFormat;
+
 
 	//consulta sql
 	$query = sprintf("INSERT INTO func (nome, sobrenome, data_nasc, idade, sexo, salario, telefone, email, cargo, setor, subsetor) values ('%s', '%s', '%s', '%d', '%s', '%f', '%s', '%s', '%s', '%s', '%s')",

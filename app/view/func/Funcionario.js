@@ -51,6 +51,7 @@ Ext.define('ExtMVC.view.func.Funcionario', {
         },
         {
             text: 'Email',
+            flex: 1,
             width: 100,
             dataIndex: 'email'
         },

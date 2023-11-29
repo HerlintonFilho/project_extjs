@@ -25,7 +25,7 @@
 	$id = $data->id;
 
 
-    var_dump($data);
+    //var_dump($data);
 	//consulta sql
 	$query = sprintf("UPDATE func SET nome = '%s', sobrenome = '%s', data_nasc = '%s', idade = '%d', salario = '%f', telefone = '%s', email = '%s', cargo = '%s', setor = '%s', subsetor = '%s' WHERE id=%d",
         mysqli_real_escape_string($conexao, $nome),

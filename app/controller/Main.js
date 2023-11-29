@@ -146,6 +146,7 @@ Ext.define('ExtMVC.controller.Main', {
             values = form.getValues(),
             record = form.getRecord(),
             grid = Ext.ComponentQuery.query('funcionariosgrid')[0],
+            
             store = grid.getStore();
             console.log('OIIIIIIIII');
 
@@ -170,11 +171,26 @@ Ext.define('ExtMVC.controller.Main', {
                 setor: values.selectSetor,
                 subsetor: values.selectSubSetor
             });
+            store.on('add', function (store, records, index, eOpts) {
+                Ext.each(records, function (record) {
+                    // Faça o tratamento aqui, por exemplo, exiba os dados no console
+                    console.log('Registro adicionado:', record.getData());
+                });
+            }); 
+
+            console.log(values)
 
             store.insert(0,func);
         }
 
-        store.sync();
+        store.sync({
+            success: function (batch, options) {
+               console.log('Sync success:', batch.operations);
+            },
+            failure: function (batch, options) {
+               console.log('Sync failure:', batch.operations);
+            }
+         });
 
         win.close();
     },

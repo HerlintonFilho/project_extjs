@@ -80,7 +80,9 @@ Ext.define('ExtMVC.view.func.FuncForm', {
                     name: 'telefone',
                     fieldLabel: 'Telefone',
                     allowBlank: false,
-                    maskRe: /[0-9()-]/
+                    maskRe: /[0-9()-]/,
+                    maxLength: 14,
+                    enforceMaxLength: true
                 },
                 {
                     xtype: 'textfield',

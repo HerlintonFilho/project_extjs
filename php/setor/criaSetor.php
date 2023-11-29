@@ -5,8 +5,6 @@
 
 	$data = json_decode(stripslashes($info));
 
-	var_dump($data);
-
 	$nome = $data->nome;
 	$abreviacao = $data->abreviacao;
 
