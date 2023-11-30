@@ -3,17 +3,23 @@ Ext.define('ExtMVC.controller.Main', {
     extend: 'Ext.app.Controller',
     models: [
     	'ExtMVC.model.Func',
-        'ExtMVC.model.Cargo'
+        'ExtMVC.model.Cargo',
+        'ExtMVC.model.Setor',
+        'ExtMVC.model.Subsetor'
     ],
 
     stores: [
     	'ExtMVC.store.Func',
-        'ExtMVC.store.Cargo'
+        'ExtMVC.store.Cargo',
+        'ExtMVC.store.Setor',
+        'ExtMVC.store.Subsetor'
     ],
     views: [
         'ExtMVC.view.func.Grid',
         'ExtMVC.view.func.Funcionario',
-        'ExtMVC.view.func.Cargo'
+        'ExtMVC.view.func.Cargo',
+        'ExtMVC.view.func.Setor',
+        'ExtMVC.view.func.Subsetor'
     ],
 
     
@@ -32,6 +38,9 @@ Ext.define('ExtMVC.controller.Main', {
             },
             'funcionariosgrid button#delete': {
                 click : this.onDeleteClick
+            },
+            'funcionariosgrid button#search':{
+                click : this.onSearch
             },
             'funcform button#cancel':{
                 click : this.onCancelClick
@@ -141,6 +150,20 @@ Ext.define('ExtMVC.controller.Main', {
         store.sync();
     },
 
+    onSearch: function(btn, e, eopts){
+        var grid = btn.up('grid');
+        var store = grid.getStore();
+        var value = field.getValue();
+
+        // Apply the filter to the store based on user input
+        store.filter({
+            property: 'nome', // Adjust the property based on your requirements
+            anyMatch: true,
+            caseSensitive: false,
+            value: value
+            });
+    },
+
     onSaveClick: function(btn, e, eOpts){
         var win = btn.up('window'),
             form = win.down('form'),
@@ -149,13 +172,10 @@ Ext.define('ExtMVC.controller.Main', {
             grid = Ext.ComponentQuery.query('funcionariosgrid')[0],
             
             store = grid.getStore();
-            console.log('OIIIIIIIII');
 
         if (record){
             
             record.set(values);
-            console.log('Atualiza');
-            console.log(values)
 
         } else { 
 
@@ -168,18 +188,15 @@ Ext.define('ExtMVC.controller.Main', {
                 salario: values.salario,
                 telefone: values.telefone,
                 email: values.email,
-                cargo: values.selectCargo,
-                setor: values.selectSetor,
-                subsetor: values.selectSubSetor
+                cargo: values.cargo,
+                setor: values.setor,
+                subsetor: values.subsetor
             });
             store.on('add', function (store, records, index, eOpts) {
                 Ext.each(records, function (record) {
-                    // Faça o tratamento aqui, por exemplo, exiba os dados no console
                     console.log('Registro adicionado:', record.getData());
                 });
             }); 
-
-            console.log(values)
 
             store.insert(0,func);
         }

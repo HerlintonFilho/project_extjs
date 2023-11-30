@@ -10,6 +10,7 @@ Ext.define('ExtMVC.view.func.SubsetorForm', {
     scrollable: true,
     resizable: false,
     autoShow: true,
+    modal: true,
     items: [
         {
             xtype: 'form',
@@ -35,7 +36,8 @@ Ext.define('ExtMVC.view.func.SubsetorForm', {
                     inputId: 'selectSetor',
                     store: 'ExtMVC.store.Setor',
                     displayField: 'nome',
-                    valueField: 'nome'
+                    valueField: 'nome',
+                    editable: false
                 }
             ]
         }

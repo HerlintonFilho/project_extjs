@@ -10,7 +10,7 @@ var status = Ext.create('Ext.data.Store', {
 Ext.define('ExtMVC.view.func.CargoForm', {
     extend: 'Ext.window.Window',
     alias: 'widget.cargoform',
-
+    modal: true,
     height: 200,
     width: 300,
     layout: 'fit',
@@ -47,7 +47,8 @@ Ext.define('ExtMVC.view.func.CargoForm', {
                     store: status,
                     queryMode: 'local',
                     displayField: 'name',
-                    valueField: 'name'
+                    valueField: 'name',
+                    editable: false
                 },
             ]
         }

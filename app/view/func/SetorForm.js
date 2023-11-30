@@ -10,6 +10,7 @@ Ext.define('ExtMVC.view.func.SetorForm', {
     scrollable: true,
     resizable: false,
     autoShow: true,
+    modal: true,
     items: [
         {
             xtype: 'form',

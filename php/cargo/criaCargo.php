@@ -5,8 +5,6 @@
 
 	$data = json_decode(stripslashes($info));
 
-	var_dump($data);
-
 	$description = $data->description;
 	$status_cargo = $data->status_cargo;
 

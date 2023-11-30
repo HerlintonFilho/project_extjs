@@ -88,7 +88,27 @@ Ext.define('ExtMVC.view.func.Funcionario', {
                     text: 'Excluir',
                     itemId: 'delete',
                     iconCls: 'icon-delete'
-                }        
+                }     
+            ]
+        },
+        {
+            xtype: 'toolbar',
+            padding: 4, 
+            dock: 'top',
+            items: [
+                {
+                    xtype: 'textfield',
+                    fieldLabel: 'Pesquisar',
+                    itemId: 'search_field',
+                    labelWidth: 60,
+                    enableKeyEvents: true
+                },
+                {
+                    xtype: 'button',
+                    text: 'Buscar',
+                    itemId: 'search',
+                    iconCls: 'icon-search'
+                }
             ]
         },
         {

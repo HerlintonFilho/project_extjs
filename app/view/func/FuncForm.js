@@ -10,6 +10,7 @@ Ext.define('ExtMVC.view.func.FuncForm', {
     scrollable: true,
     resizable: false,
     autoShow: true,
+    modal: true,
     items: [
         {
             xtype: 'form',
@@ -100,6 +101,7 @@ Ext.define('ExtMVC.view.func.FuncForm', {
                     store: 'ExtMVC.store.Cargo',
                     displayField: 'description',
                     valueField: 'description',
+                    editable: false
                 },
                 {
                     xtype: 'combobox',
@@ -108,7 +110,8 @@ Ext.define('ExtMVC.view.func.FuncForm', {
                     inputId: 'selectSetor',
                     store: 'ExtMVC.store.Setor',
                     displayField: 'nome',
-                    valueField: 'nome'
+                    valueField: 'nome',
+                    editable: false
                 },
                 {
                     xtype: 'combobox',
@@ -117,7 +120,8 @@ Ext.define('ExtMVC.view.func.FuncForm', {
                     inputId: 'selectSubSetor',
                     store: 'ExtMVC.store.Subsetor',
                     displayField: 'subsetor_nome',
-                    valueField: 'subsetor_nome'
+                    valueField: 'subsetor_nome',
+                    editable: false
                 }
             ]
         }
