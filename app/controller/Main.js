@@ -116,9 +116,10 @@ Ext.define('ExtMVC.controller.Main', {
         var win = this.openForm('Editar Funcionário - ' + record.get('nome') +  ' ' + record.get('sobrenome'));
         var form = win.down('form');
         form.loadRecord(record);
-        console.log(record);
         var radio = form.down('[name=sexo]');
-        console.log(radio)
+        radio.setValue({
+            opcao: record.get('sexo')
+        });
     },
 
     onAddClick: function(btn, e, eOpts){

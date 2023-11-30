@@ -24,10 +24,9 @@
 
 	$id = $data->id;
 
-
     //var_dump($data);
 	//consulta sql
-	$query = sprintf("UPDATE func SET nome = '%s', sobrenome = '%s', data_nasc = '%s', idade = '%d', salario = '%f', telefone = '%s', email = '%s', cargo = '%s', setor = '%s', subsetor = '%s' WHERE id=%d",
+	$query = sprintf("UPDATE func SET nome = '%s', sobrenome = '%s', data_nasc = '%s', idade = '%d',sexo = '%s', salario = '%f', telefone = '%s', email = '%s', cargo = '%s', setor = '%s', subsetor = '%s' WHERE id= '$data->id' ",
         mysqli_real_escape_string($conexao, $nome),
         mysqli_real_escape_string($conexao, $sobrenome),
         mysqli_real_escape_string($conexao, $dataFormat),
@@ -39,7 +38,7 @@
         mysqli_real_escape_string($conexao, $cargo),
         mysqli_real_escape_string($conexao, $setor),
         mysqli_real_escape_string($conexao, $subsetor),
-		$id);
+		mysqli_real_escape_string($conexao,$id));
 
 	$rs = mysqli_query($conexao ,$query);
 
