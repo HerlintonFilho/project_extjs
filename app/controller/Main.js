@@ -151,17 +151,28 @@ Ext.define('ExtMVC.controller.Main', {
     },
 
     onSearch: function(btn, e, eopts){
-        var grid = btn.up('grid');
+        var grid = Ext.ComponentQuery.query('funcionariosgrid')[0];
         var store = grid.getStore();
+        var field = Ext.ComponentQuery.query('funcionariosgrid textfield#search_field')[0];
         var value = field.getValue();
 
-        // Apply the filter to the store based on user input
-        store.filter({
-            property: 'nome', // Adjust the property based on your requirements
-            anyMatch: true,
-            caseSensitive: false,
-            value: value
+        if(value){
+            store.filter({
+                property: 'nome', 
+                anyMatch: true,
+                caseSensitive: false,
+                value: value
             });
+            if (store.getCount() === 0) {
+                Ext.Msg.alert('Aviso', 'Nenhum registro encontrado na pesquisa.');
+                store.clearFilter();
+                field.setValue('')
+            }
+        }else{
+            store.clearFilter();
+        }
+
+        
     },
 
     onSaveClick: function(btn, e, eOpts){
@@ -259,7 +270,7 @@ Ext.define('ExtMVC.controller.Main', {
 
             var cargo = Ext.create('ExtMVC.model.Cargo',{
                 description: values.description,
-                status_cargo: values.selectStatus
+                status_cargo: values.status_cargo
             });
 
             store.insert(0,cargo);
@@ -369,7 +380,7 @@ Ext.define('ExtMVC.controller.Main', {
             }else{
                 var subsetor = Ext.create('ExtMVC.model.Subsetor', {
                     subsetor_nome: values.subsetor_nome,
-                    setor_name: values.selectSetor
+                    setor_name: values.setor_name
                 });
                 store.insert(0, subsetor);
             }

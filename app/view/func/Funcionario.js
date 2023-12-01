@@ -98,6 +98,7 @@ Ext.define('ExtMVC.view.func.Funcionario', {
             items: [
                 {
                     xtype: 'textfield',
+                    name:'search_field',
                     fieldLabel: 'Pesquisar',
                     itemId: 'search_field',
                     labelWidth: 60,
