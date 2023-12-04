@@ -24,13 +24,10 @@ Ext.define('ExtMVC.view.func.Cargo', {
             width: 100,
             dataIndex: 'status_cargo',
             renderer: function(value, meta, record) {
-                // Verifique o valor do status e defina a cor do texto com base nele
                 var cor = (value == 'Ativo') ? 'green' : 'red';
 
-                // Configurar o estilo da célula para alterar a cor do texto
                 meta.style = 'color: ' + cor + '; font-weight: bold;';
                 
-                // Retornar o valor do status para exibição na célula
                 return value.toUpperCase();
             }
         },

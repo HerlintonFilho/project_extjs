@@ -63,7 +63,8 @@ Ext.define('ExtMVC.view.func.Funcionario', {
         {
             text: 'Setor',
             width: 100,
-            dataIndex: 'setor'
+            dataIndex: 'setor',
+            flex: 1
         },
         {
             text: 'Subsetor',

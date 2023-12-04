@@ -54,6 +54,9 @@ Ext.define('ExtMVC.controller.Main', {
             'cargosgrid button#add' : {
                 click : this.onAddCargo
             },
+            'cargosgrid button#report' : {
+                click : this.onReportClick
+            },
             'cargosgrid button#delete' : {
                 click : this.onDeleteCargo
             },
@@ -166,7 +169,7 @@ Ext.define('ExtMVC.controller.Main', {
             if (store.getCount() === 0) {
                 Ext.Msg.alert('Aviso', 'Nenhum registro encontrado na pesquisa.');
                 store.clearFilter();
-                field.setValue('')
+                field.setValue('');
             }
         }else{
             store.clearFilter();
@@ -253,6 +256,11 @@ Ext.define('ExtMVC.controller.Main', {
         var store = grid.getStore();
         store.remove(records);
         store.sync();
+    },
+
+    onReportClick: function(btn, e, eOpts){
+        var grid = Ext.ComponentQuery.query('cargosgrid')[0]
+        var columns = grid.columns
     },
 
     onSaveCargo: function(btn, e, eOpts){

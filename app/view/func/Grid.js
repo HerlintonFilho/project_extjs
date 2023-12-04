@@ -19,7 +19,7 @@
                 title: 'Menu',
                 width: 150,
                 rootVisible: false,
-                collapsed: true,
+                collapsed: false,
                 collapsible: true,
                 root: {
                     expanded: false,
@@ -55,6 +55,9 @@
                         if(index == 4){
                             var grid = Ext.create('ExtMVC.view.func.Subsetor');
                             central.add(grid);
+                        }
+                        if(index == 5){
+                            Ext.Msg.alert('Alerta', 'Página de Relatório')
                         }
                     }
                 }

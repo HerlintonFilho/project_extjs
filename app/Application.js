@@ -18,6 +18,7 @@ Ext.define('ExtMVC.Application', {
     stores: [
         'ExtMVC.store.Func',
         'ExtMVC.store.Cargo',
+        'ExtMVC.store.CargoSelect',
         'ExtMVC.store.Setor',
         'ExtMVC.store.Subsetor'
     ]

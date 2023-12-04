@@ -13,7 +13,7 @@
 	    $cargos[] = $cargo;
 	}
 
-	$queryTotal = mysqli_query($conexao, 'SELECT count(*) as num FROM func') or die(mysqli_connect_error());
+	$queryTotal = mysqli_query($conexao, 'SELECT count(*) as num FROM cargo') or die(mysqli_connect_error());
 	$row = mysqli_fetch_assoc($queryTotal);
 	$total = $row['num'];
 

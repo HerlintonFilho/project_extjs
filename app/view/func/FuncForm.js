@@ -98,7 +98,7 @@ Ext.define('ExtMVC.view.func.FuncForm', {
                     name:'cargo',
                     inputId: 'selectCargo',
                     fieldLabel: 'Cargo',
-                    store: 'ExtMVC.store.Cargo',
+                    store: 'ExtMVC.store.CargoSelect',
                     displayField: 'description',
                     valueField: 'description',
                     editable: false
@@ -111,7 +111,20 @@ Ext.define('ExtMVC.view.func.FuncForm', {
                     store: 'ExtMVC.store.Setor',
                     displayField: 'nome',
                     valueField: 'nome',
-                    editable: false
+                    editable: false,
+                    listeners: {
+                        select: function (combo, record, eOpts) {
+                            var subsetorCombo = combo.up('form').down('combobox[name=subsetor]');
+                            var subsetorStore = Ext.getStore('ExtMVC.store.Subsetor');
+                            
+                            subsetorCombo.clearValue();
+                            subsetorStore.clearFilter();
+                            
+                            if (record) {
+                                subsetorStore.filter('setor_id', record.get('id'));  // Ajuste para o campo correto no modelo Setor
+                            }
+                        }
+                    }
                 },
                 {
                     xtype: 'combobox',
