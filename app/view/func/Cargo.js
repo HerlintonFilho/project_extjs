@@ -1,8 +1,6 @@
 Ext.define('ExtMVC.view.func.Cargo', {
     extend: 'Ext.grid.Panel',
     alias: 'widget.cargosgrid',
-
-
     store: 'ExtMVC.store.Cargo',
     title: 'Cargos',
     iconCls: 'icon-grid',
@@ -25,14 +23,12 @@ Ext.define('ExtMVC.view.func.Cargo', {
             dataIndex: 'status_cargo',
             renderer: function(value, meta, record) {
                 var cor = (value == 'Ativo') ? 'green' : 'red';
-
                 meta.style = 'color: ' + cor + '; font-weight: bold;';
                 
                 return value.toUpperCase();
             }
         },
     ],
-
     dockedItems: [
         {
             xtype: 'toolbar',

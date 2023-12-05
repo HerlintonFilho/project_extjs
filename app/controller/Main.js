@@ -259,8 +259,31 @@ Ext.define('ExtMVC.controller.Main', {
     },
 
     onReportClick: function(btn, e, eOpts){
-        var grid = Ext.ComponentQuery.query('cargosgrid')[0]
-        var columns = grid.columns
+        var store = Ext.ComponentQuery.query('cargosgrid')[0].getStore();
+        var records = store.getRange();
+        var dataToSend = Ext.JSON.encode(records.map(function(record) {
+            return record.getData();
+        }));
+        console.log(dataToSend);
+        console.log(records)
+        Ext.Ajax.request({
+            url: 'php/cargo/exportCargo.php',
+            method: 'POST',
+            params: Ext.JSON.encode({
+                exportType: 'excel',
+                data: records.map(function(record) {
+                    return record.getData();
+                })
+            }),
+            success: function(response) {
+                console.log(response);
+                Ext.Msg.alert('Alerta!!','Dados exportados com Sucesso!!');
+            },
+            failure: function(response) {
+                console.log(response);
+                Ext.Msg.alert('Alerta!!','Falha na operação :(');
+            }
+        });
     },
 
     onSaveCargo: function(btn, e, eOpts){

@@ -116,12 +116,14 @@ Ext.define('ExtMVC.view.func.FuncForm', {
                         select: function (combo, record, eOpts) {
                             var subsetorCombo = combo.up('form').down('combobox[name=subsetor]');
                             var subsetorStore = Ext.getStore('ExtMVC.store.Subsetor');
+                            console.log(record);
+                            console.log(subsetorStore);
                             
                             subsetorCombo.clearValue();
                             subsetorStore.clearFilter();
                             
                             if (record) {
-                                subsetorStore.filter('setor_id', record.get('id'));  // Ajuste para o campo correto no modelo Setor
+                                console.log(subsetorStore.filter('setor_name', record.get('setor_name')));
                             }
                         }
                     }
