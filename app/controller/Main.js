@@ -272,7 +272,7 @@ Ext.define('ExtMVC.controller.Main', {
             params: Ext.JSON.encode({
                 exportType: 'excel',
                 data: records.map(function(record) {
-                    return record.getData();
+                    return Ext.JSON.encode(record.getData());
                 })
             }),
             success: function(response) {
