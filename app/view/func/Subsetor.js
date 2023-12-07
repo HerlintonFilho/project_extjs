@@ -4,7 +4,7 @@ Ext.define('ExtMVC.view.func.Subsetor', {
 
 
     store: 'ExtMVC.store.Subsetor',
-    title: 'Setores',
+    title: 'SubSetores',
     iconCls: 'icon-grid',
     
     columns: [
@@ -46,7 +46,7 @@ Ext.define('ExtMVC.view.func.Subsetor', {
                 },
                 {
                     xtype: 'button',
-                    text: 'Relatório',
+                    text: 'Exportar Excel',
                     itemId: 'report',
                     iconCls: 'icon-report'
                 }       

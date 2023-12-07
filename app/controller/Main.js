@@ -39,6 +39,9 @@ Ext.define('ExtMVC.controller.Main', {
             'funcionariosgrid button#delete': {
                 click : this.onDeleteClick
             },
+            'funcionariosgrid button#report': {
+                click : this.onReportFuncClick
+            },
             'funcionariosgrid button#search':{
                 click : this.onSearch
             },
@@ -55,7 +58,7 @@ Ext.define('ExtMVC.controller.Main', {
                 click : this.onAddCargo
             },
             'cargosgrid button#report' : {
-                click : this.onReportClick
+                click : this.onReportCargoClick
             },
             'cargosgrid button#delete' : {
                 click : this.onDeleteCargo
@@ -71,6 +74,9 @@ Ext.define('ExtMVC.controller.Main', {
             },
             'setoresgrid button#add':{
                 click: this.onAddSetor
+            },
+            'setoresgrid button#report':{
+                click : this.OnReportSetorClick
             },
             'setoresgrid button#delete':{
                 click: this.onDeleteSetor
@@ -90,7 +96,9 @@ Ext.define('ExtMVC.controller.Main', {
             'subsetoresgrid button#delete':{
                 click: this.onDeleteSubsetor
             },
-
+            'subsetoresgrid button#report':{
+                click: this.onReportSubsetorClick
+            },
             'subsetorform button#cancel':{
                 click: this.onCancelFormSubsetor
             },
@@ -151,6 +159,29 @@ Ext.define('ExtMVC.controller.Main', {
         var store = grid.getStore();
         store.remove(records);
         store.sync();
+    },
+
+    onReportFuncClick: function(btn, e, eOpts){
+        var store = Ext.ComponentQuery.query('funcionariosgrid')[0].getStore();
+        var records = store.getRange();
+        var dataToSend = records.map(function(record) {
+            return record.getData();
+        });
+    
+        var encodedData = encodeURIComponent(JSON.stringify(dataToSend));
+    
+        var win = Ext.create('Ext.window.Window', {
+            title: 'Visualizar',
+            width: 600,
+            height: 200,
+            modal: true,
+            layout: 'fit',
+            maximizable: true
+        });
+    
+        var href = '../../extjs-crudmvc/php/func/exportFunc.php?data=' + encodedData;
+        win.html = '<iframe src="' + href + '" name="principal" width="100%" height="100%" scrolling="auto" frameborder="0"></iframe>';
+        win.show();
     },
 
     onSearch: function(btn, e, eopts){
@@ -258,7 +289,7 @@ Ext.define('ExtMVC.controller.Main', {
         store.sync();
     },
 
-    onReportClick: function(btn, e, eOpts) {
+    onReportCargoClick: function(btn, e, eOpts) {
         var store = Ext.ComponentQuery.query('cargosgrid')[0].getStore();
         var records = store.getRange();
         var dataToSend = records.map(function(record) {
@@ -339,6 +370,29 @@ Ext.define('ExtMVC.controller.Main', {
         store.sync();
     },
 
+    OnReportSetorClick: function(btn, e, eOpts){
+        var store = Ext.ComponentQuery.query('setoresgrid')[0].getStore();
+        var records = store.getRange();
+        var dataToSend = records.map(function(record){
+            return record.getData();
+        })
+
+        var encodeData = encodeURIComponent(JSON.stringify(dataToSend));
+
+        var win = Ext.create('Ext.window.Window', {
+            title: 'Visualizar',
+            width: 600,
+            height: 200,
+            modal: true,
+            layout: 'fit',
+            maximizable: true
+        })
+
+        var href = '../../extjs-crudmvc/php/setor/exportSetor.php?data=' + encodeData;
+        win.html = '<iframe src="' + href + '" name="principal" width="100%" height="100%" scrolling="auto" frameborder="0"></iframe>';
+        win.show()
+    },
+
     onSaveSetor: function(btn, e, eOpts){
         var win = btn.up('window'),
             form = win.down('form'),
@@ -392,6 +446,29 @@ Ext.define('ExtMVC.controller.Main', {
         var store = grid.getStore();
         store.remove(records);
         store.sync();
+    },
+
+    onReportSubsetorClick: function(btn, e, eopts){
+        var store = Ext.ComponentQuery.query('subsetoresgrid')[0].getStore();
+        var records = store.getRange();
+        var dataToSend = records.map(function(record) {
+            return record.getData();
+        });
+    
+        var encodedData = encodeURIComponent(JSON.stringify(dataToSend));
+    
+        var win = Ext.create('Ext.window.Window', {
+            title: 'Visualizar',
+            width: 600,
+            height: 200,
+            modal: true,
+            layout: 'fit',
+            maximizable: true
+        });
+    
+        var href = '../../extjs-crudmvc/php/subsetor/exportSubsetor.php?data=' + encodedData;
+        win.html = '<iframe src="' + href + '" name="principal" width="100%" height="100%" scrolling="auto" frameborder="0"></iframe>';
+        win.show();
     },
 
     onSaveSubsetor: function(btn, e, eOpt){

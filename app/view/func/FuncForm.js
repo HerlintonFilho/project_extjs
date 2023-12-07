@@ -73,7 +73,7 @@ Ext.define('ExtMVC.view.func.FuncForm', {
                     xtype: 'textfield',
                     name: 'salario',
                     fieldLabel: 'Salario',
-                    maskRe: /[0-9,.]/,
+                    maskRe: /[0-9.]/,
                     allowBlank: false
                 },
                 {

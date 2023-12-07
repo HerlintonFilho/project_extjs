@@ -45,7 +45,7 @@ Ext.define('ExtMVC.view.func.Setor', {
                 },
                 {
                     xtype: 'button',
-                    text: 'Relatório',
+                    text: 'Exportar Excel',
                     itemId: 'report',
                     iconCls: 'icon-report'
                 }       

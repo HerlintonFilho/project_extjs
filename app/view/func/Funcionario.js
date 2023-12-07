@@ -89,7 +89,13 @@ Ext.define('ExtMVC.view.func.Funcionario', {
                     text: 'Excluir',
                     itemId: 'delete',
                     iconCls: 'icon-delete'
-                }     
+                },
+                {
+                    xtype: 'button',
+                    text: 'Exportar Excel',
+                    itemId: 'report',
+                    iconCls: 'icon-report'
+                } 
             ]
         },
         {
