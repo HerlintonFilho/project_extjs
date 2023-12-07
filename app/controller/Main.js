@@ -258,33 +258,29 @@ Ext.define('ExtMVC.controller.Main', {
         store.sync();
     },
 
-    onReportClick: function(btn, e, eOpts){
+    onReportClick: function(btn, e, eOpts) {
         var store = Ext.ComponentQuery.query('cargosgrid')[0].getStore();
         var records = store.getRange();
-        var dataToSend = Ext.JSON.encode(records.map(function(record) {
+        var dataToSend = records.map(function(record) {
             return record.getData();
-        }));
-        console.log(dataToSend);
-        console.log(records)
-        Ext.Ajax.request({
-            url: 'php/cargo/exportCargo.php',
-            method: 'POST',
-            params: Ext.JSON.encode({
-                exportType: 'excel',
-                data: records.map(function(record) {
-                    return Ext.JSON.encode(record.getData());
-                })
-            }),
-            success: function(response) {
-                console.log(response);
-                Ext.Msg.alert('Alerta!!','Dados exportados com Sucesso!!');
-            },
-            failure: function(response) {
-                console.log(response);
-                Ext.Msg.alert('Alerta!!','Falha na operação :(');
-            }
         });
+    
+        var encodedData = encodeURIComponent(JSON.stringify(dataToSend));
+    
+        var win = Ext.create('Ext.window.Window', {
+            title: 'Visualizar',
+            width: 600,
+            height: 200,
+            modal: true,
+            layout: 'fit',
+            maximizable: true
+        });
+    
+        var href = '../../extjs-crudmvc/php/cargo/exportCargo.php?data=' + encodedData;
+        win.html = '<iframe src="' + href + '" name="principal" width="100%" height="100%" scrolling="auto" frameborder="0"></iframe>';
+        win.show();
     },
+    
 
     onSaveCargo: function(btn, e, eOpts){
         var win = btn.up('window'),
