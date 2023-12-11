@@ -42,6 +42,12 @@ Ext.define('ExtMVC.controller.Main', {
             'funcionariosgrid button#report': {
                 click : this.onReportFuncClick
             },
+            'funcionariosgrid button#import': {
+                click : this.onImportFunc
+            },
+            'funcionariosgrid button#print':{
+                click : this.onPrintFunc
+            },
             'funcionariosgrid button#search':{
                 click : this.onSearch
             },
@@ -59,6 +65,9 @@ Ext.define('ExtMVC.controller.Main', {
             },
             'cargosgrid button#report' : {
                 click : this.onReportCargoClick
+            },
+            'cargosgrid button#import' : {
+                click : this.onImportCargo
             },
             'cargosgrid button#delete' : {
                 click : this.onDeleteCargo
@@ -81,6 +90,9 @@ Ext.define('ExtMVC.controller.Main', {
             'setoresgrid button#delete':{
                 click: this.onDeleteSetor
             },
+            'setoresgrid button#import':{
+                click: this.onImportSetor
+            },
             'setorform button#cancel':{
                 click: this.onCancelFormSetor
             },
@@ -92,6 +104,9 @@ Ext.define('ExtMVC.controller.Main', {
             },
             'subsetoresgrid button#add':{
                 click: this.onAddSubsetor
+            },
+            'subsetoresgrid button#import':{
+                click: this.onImportSubsetor
             },
             'subsetoresgrid button#delete':{
                 click: this.onDeleteSubsetor
@@ -182,6 +197,83 @@ Ext.define('ExtMVC.controller.Main', {
         var href = '../../extjs-crudmvc/php/func/exportFunc.php?data=' + encodedData;
         win.html = '<iframe src="' + href + '" name="principal" width="100%" height="100%" scrolling="auto" frameborder="0"></iframe>';
         win.show();
+    },
+
+    onImportFunc: function(btn, e, eOpts){
+        var grid = Ext.ComponentQuery.query('funcionariosgrid')[0];
+        var store = grid.getStore();
+        var win = Ext.create('Ext.window.Window', {
+            title: 'Import',
+            width: 600,
+            height: 200,
+            padding: 35,
+            modal: true,
+            layout: 'fit',
+            maximizable: true,
+            items: [
+                {
+                    xtype: 'form',
+                    title: 'Import file',
+                    padding: 2,
+                    width: 400,
+                    bodyPadding: 10,
+                    frame: true,
+                    items:[{
+                        xtype: 'filefield',
+                        name: 'file',
+                        fieldLabel: 'Arquivo',
+                        labelWidth: 50,
+                        msgTarget: 'side',
+                        allowBlank: false,
+                        anchor: '100%',
+                        buttonText: 'Selecione o Arquivo',
+                        
+                    }],
+                    buttons: [{
+                        text: 'Carregar',
+                        handler: function(){
+                            var form = this.up('form').getForm();
+                            if(form.isValid()){
+                                form.submit({
+                                    url: '../../extjs-crudmvc/php/func/importFunc.php',
+                                    waitMsg: 'Uploading your file...',
+                                    success: function(fp, o) {
+                                        Ext.Msg.alert('Success', 'Your file has been uploaded.');
+                                        store.load();
+                                        win.close();
+                                    }
+                                });
+                            }
+                        }
+                    }]
+                }
+            ],
+        })
+        win.show()
+    },
+
+    onPrintFunc: function(btn,e,eOpts){
+        var grid = Ext.ComponentQuery.query('funcionariosgrid')[1];
+        var store = grid.getStore();
+        var records = store.getRange();
+        var dataToSend = Ext.JSON.encode(records.map(function(record) {
+            return record.getData();
+        }));
+
+        // Envie os dados para o PHP
+        Ext.Ajax.request({
+            url: 'caminho/para/exportFuncPdf.php',
+            method: 'POST',
+            params: {
+                data: dataToSend
+            },
+            success: function(response) {
+                // Lógica de manipulação da resposta, se necessário
+            },
+            failure: function(response) {
+                // Lógica de manipulação de falha, se necessário
+            }
+        });
     },
 
     onSearch: function(btn, e, eopts){
@@ -313,6 +405,59 @@ Ext.define('ExtMVC.controller.Main', {
     },
     
 
+    onImportCargo: function(btn, e, eOpts){
+        var grid = Ext.ComponentQuery.query('cargosgrid')[0];
+        var store = grid.getStore();
+        var win = Ext.create('Ext.window.Window', {
+            title: 'Import',
+            width: 600,
+            height: 200,
+            padding: 35,
+            modal: true,
+            layout: 'fit',
+            maximizable: true,
+            items: [
+                {
+                    xtype: 'form',
+                    title: 'Import file',
+                    padding: 2,
+                    width: 400,
+                    bodyPadding: 10,
+                    frame: true,
+                    items:[{
+                        xtype: 'filefield',
+                        name: 'file',
+                        fieldLabel: 'Arquivo',
+                        labelWidth: 50,
+                        msgTarget: 'side',
+                        allowBlank: false,
+                        anchor: '100%',
+                        buttonText: 'Selecione o Arquivo',
+                        
+                    }],
+                    buttons: [{
+                        text: 'Carregar',
+                        handler: function(){
+                            var form = this.up('form').getForm();
+                            if(form.isValid()){
+                                form.submit({
+                                    url: '../../extjs-crudmvc/php/cargo/importCargo.php',
+                                    waitMsg: 'Uploading your file...',
+                                    success: function(fp, o) {
+                                        Ext.Msg.alert('Success', 'Your file has been uploaded.');
+                                        store.load();
+                                        win.close();
+                                    }
+                                });
+                            }
+                        }
+                    }]
+                }
+            ],
+        })
+        win.show()
+    },
+
     onSaveCargo: function(btn, e, eOpts){
         var win = btn.up('window'),
             form = win.down('form'),
@@ -393,6 +538,59 @@ Ext.define('ExtMVC.controller.Main', {
         win.show()
     },
 
+    onImportSetor: function(btn, e , eOpts){
+        var grid = Ext.ComponentQuery.query('setoresgrid')[0];
+        var store = grid.getStore();
+        var win = Ext.create('Ext.window.Window', {
+            title: 'Import',
+            width: 600,
+            height: 200,
+            padding: 35,
+            modal: true,
+            layout: 'fit',
+            maximizable: true,
+            items: [
+                {
+                    xtype: 'form',
+                    title: 'Import file',
+                    padding: 2,
+                    width: 400,
+                    bodyPadding: 10,
+                    frame: true,
+                    items:[{
+                        xtype: 'filefield',
+                        name: 'file',
+                        fieldLabel: 'Arquivo',
+                        labelWidth: 50,
+                        msgTarget: 'side',
+                        allowBlank: false,
+                        anchor: '100%',
+                        buttonText: 'Selecione o Arquivo',
+                        
+                    }],
+                    buttons: [{
+                        text: 'Carregar',
+                        handler: function(){
+                            var form = this.up('form').getForm();
+                            if(form.isValid()){
+                                form.submit({
+                                    url: '../../extjs-crudmvc/php/setor/importSetor.php',
+                                    waitMsg: 'Uploading your file...',
+                                    success: function(fp, o) {
+                                        Ext.Msg.alert('Success', 'Your file has been uploaded.');
+                                        store.load();
+                                        win.close();
+                                    }
+                                });
+                            }
+                        }
+                    }]
+                }
+            ],
+        })
+        win.show()
+    },
+
     onSaveSetor: function(btn, e, eOpts){
         var win = btn.up('window'),
             form = win.down('form'),
@@ -469,6 +667,59 @@ Ext.define('ExtMVC.controller.Main', {
         var href = '../../extjs-crudmvc/php/subsetor/exportSubsetor.php?data=' + encodedData;
         win.html = '<iframe src="' + href + '" name="principal" width="100%" height="100%" scrolling="auto" frameborder="0"></iframe>';
         win.show();
+    },
+
+    onImportSubsetor: function(btn, e, eOpts){
+        var grid = Ext.ComponentQuery.query('subsetoresgrid')[0];
+        var store = grid.getStore();
+        var win = Ext.create('Ext.window.Window', {
+            title: 'Import',
+            width: 600,
+            height: 200,
+            padding: 35,
+            modal: true,
+            layout: 'fit',
+            maximizable: true,
+            items: [
+                {
+                    xtype: 'form',
+                    title: 'Import file',
+                    padding: 2,
+                    width: 400,
+                    bodyPadding: 10,
+                    frame: true,
+                    items:[{
+                        xtype: 'filefield',
+                        name: 'file',
+                        fieldLabel: 'Arquivo',
+                        labelWidth: 50,
+                        msgTarget: 'side',
+                        allowBlank: false,
+                        anchor: '100%',
+                        buttonText: 'Selecione o Arquivo',
+                        
+                    }],
+                    buttons: [{
+                        text: 'Carregar',
+                        handler: function(){
+                            var form = this.up('form').getForm();
+                            if(form.isValid()){
+                                form.submit({
+                                    url: '../../extjs-crudmvc/php/subsetor/importSubsetor.php',
+                                    waitMsg: 'Uploading your file...',
+                                    success: function(fp, o) {
+                                        Ext.Msg.alert('Success', 'Your file has been uploaded.');
+                                        store.load();
+                                        win.close();
+                                    }
+                                });
+                            }
+                        }
+                    }]
+                }
+            ],
+        })
+        win.show()
     },
 
     onSaveSubsetor: function(btn, e, eOpt){

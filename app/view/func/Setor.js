@@ -37,18 +37,27 @@ Ext.define('ExtMVC.view.func.Setor', {
                     itemId: 'add',
                     iconCls: 'icon-add'
                 },
+                {xtype: 'tbseparator'},
                 {
                     xtype: 'button',
                     text: 'Excluir',
                     itemId: 'delete',
                     iconCls: 'icon-delete'
                 },
+                {xtype: 'tbseparator'},
                 {
                     xtype: 'button',
                     text: 'Exportar Excel',
                     itemId: 'report',
                     iconCls: 'icon-report'
-                }       
+                },
+                {xtype: 'tbseparator'},
+                {
+                    xtype: 'button',
+                    text: 'Importar excel',
+                    itemId: 'import',
+                    iconCls: 'icon-import'
+                }
             ]
         },
         {
