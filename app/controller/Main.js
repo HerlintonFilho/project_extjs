@@ -253,27 +253,17 @@ Ext.define('ExtMVC.controller.Main', {
     },
 
     onPrintFunc: function(btn,e,eOpts){
-        var grid = Ext.ComponentQuery.query('funcionariosgrid')[1];
-        var store = grid.getStore();
-        var records = store.getRange();
-        var dataToSend = Ext.JSON.encode(records.map(function(record) {
-            return record.getData();
-        }));
-
-        // Envie os dados para o PHP
+        var reportWindow = window.open('', '_blank');
         Ext.Ajax.request({
-            url: 'caminho/para/exportFuncPdf.php',
-            method: 'POST',
-            params: {
-                data: dataToSend
+            url: '../../extjs-crudmvc/php/func/printFunc.php',
+            method: 'GET',
+            success: function (response) {
+                reportWindow.document.write(response.responseText);
             },
-            success: function(response) {
-                // Lógica de manipulação da resposta, se necessário
-            },
-            failure: function(response) {
-                // Lógica de manipulação de falha, se necessário
+            failure: function (response) {
+                Ext.Msg.alert('Erro', 'Erro ao gerar relatório.');
             }
-        });
+    });
     },
 
     onSearch: function(btn, e, eopts){
