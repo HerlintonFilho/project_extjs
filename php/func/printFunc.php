@@ -70,11 +70,14 @@
 <div class="container">
     <div class="datetime">
         <?php
+        date_default_timezone_set('America/Sao_Paulo');
         $currentDateTime = new DateTime();
+        $currentDateTime->setTimezone(new DateTimeZone('America/Sao_Paulo'));
+        $currentDateTime->modify('-1 hour');
         echo $currentDateTime->format('Y-m-d H:i:s');
         ?>
     </div>
-    <img class="logo" src="localhost/extjs-crudmvc/resources/images/logo_vanguarda.png" alt="Logo" height="50" width="50">
+    <img class="logo" src="../../extjs-crudmvc/resources/images/logo_vanguarda.png" alt="Logo" height="50" width="50">
     <div class="title">Relatório de Funcionários</div>
     <hr>
     <table>
